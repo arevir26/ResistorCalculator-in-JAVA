@@ -5,11 +5,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
 public class CanvasPanel extends Canvas {
 	
 	protected Mode mode = Mode.FOUR;
+	
+	protected Codes.DColors digit1 = Codes.DColors.BLACK;
+	protected Codes.DColors digit2 = Codes.DColors.BLACK;
+	protected Codes.DColors digit3 = Codes.DColors.BLACK;
+	
+	
+	protected Codes.MColors multiplier = Codes.MColors.BLACK;
+	protected Codes.TColors tolerance = Codes.TColors.BLACK;
 	
 	@Override
 	public void paint(Graphics g) {
@@ -50,6 +56,10 @@ public class CanvasPanel extends Canvas {
 		drawFilledRectCentered(g, getCenterX()+30, getCenterY(), bWidth, mainRectH, Color.red);
 		drawFilledRectCentered(g, getCenterX()+ 70, getCenterY(), bWidth, mainRectH, Color.red);		
 		
+		
+		if(mode==Mode.FIVE) {
+			drawFilledRectCentered(g, getCenterX()+ 70, getCenterY(), bWidth, mainRectH, Color.red);
+		}
 
 		
 		
