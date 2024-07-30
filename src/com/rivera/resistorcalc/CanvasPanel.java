@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import com.rivera.resistorcalc.UI.Container;
+import com.rivera.resistorcalc.UI.Drawable;
+import com.rivera.resistorcalc.UI.IDrawable;
+
 public class CanvasPanel extends Canvas {
 	
 	protected Mode mode = Mode.FOUR;
@@ -12,68 +16,48 @@ public class CanvasPanel extends Canvas {
 	protected Codes.DColors digit1 = Codes.DColors.BLACK;
 	protected Codes.DColors digit2 = Codes.DColors.BLACK;
 	protected Codes.DColors digit3 = Codes.DColors.BLACK;
-	
-	
 	protected Codes.MColors multiplier = Codes.MColors.BLACK;
 	protected Codes.TColors tolerance = Codes.TColors.BLACK;
+	
+	protected IDrawable resistorLead;
+	protected IDrawable resistorBody;
+	protected IDrawable b1, b2, b3;
 	
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.WHITE);
-		g.fillRect(0,0, getSize().width, getSize().height);
-		drawResistor(g);
+		
+		resistorLead.draw(g);
+		resistorBody.draw(g);
+		
 		
 	}
 
 	public CanvasPanel() {
 		super();
 		setPreferredSize(new Dimension(500,100));
+		
+		resistorLead = new Container(50, 40, 400, 20);
+		
+		Container rbody = new Container(100,10,300, 80);
+		rbody.color = Color.CYAN;
+		resistorBody = rbody;
+		
+		b1 = new Container(10,0,40,80);
+		((Drawable)b1).color = Color.red;
+		rbody.add((Drawable)b1);
+		
+		b2 = new Container(70,0,40,80);
+		rbody.add((Drawable)b2);
+		
+		b3 = new Container(150,0,40,80);
+		rbody.add((Drawable)b3);
+		
+		
+		
 	}
 	
-	
-	private void drawResistor(Graphics g) {
-		
-		int padding = 10;
-		
-		final int mainRectW = 300;
-		final int mainRectH = 80;
-		
-		int mainRectX = getCenterX() - (mainRectW/2);
-		int mainRectY = getCenterY() - (mainRectH/2);
-		
-		
-		int bWidth = 25;
-		int bHeight = 40;
 
-		// draw background
-		Color c = new Color(56, 255, 149, 255);
-		
-		drawFilledRectCentered(g, getCenterX(), getCenterY(), mainRectW, mainRectH, c);
-		
-		drawFilledRectCentered(g, getCenterX()-70, getCenterY(), bWidth, mainRectH, Color.red);
-		drawFilledRectCentered(g, getCenterX()- 30, getCenterY(), bWidth, mainRectH, Color.red);
-		drawFilledRectCentered(g, getCenterX()+30, getCenterY(), bWidth, mainRectH, Color.red);
-		drawFilledRectCentered(g, getCenterX()+ 70, getCenterY(), bWidth, mainRectH, Color.red);		
-		
-		
-		if(mode==Mode.FIVE) {
-			drawFilledRectCentered(g, getCenterX()+ 70, getCenterY(), bWidth, mainRectH, Color.red);
-		}
-
-		
-		
-		
-		
-	}
-	
-	private void drawFilledRectCentered(Graphics g, int x, int y, int w, int h, Color c) {
-		int xf = x - (w/2);
-		int yf = y - (h/2);
-		g.setColor(c);
-		g.fillRect(xf, yf, w, h);
-	}
-	
 	private int getCenterY() {
 		return (int)getSize().getHeight()/2;
 	}
