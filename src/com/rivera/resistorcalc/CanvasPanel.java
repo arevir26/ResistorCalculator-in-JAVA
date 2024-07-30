@@ -21,7 +21,7 @@ public class CanvasPanel extends Canvas {
 	
 	protected IDrawable resistorLead;
 	protected IDrawable resistorBody;
-	protected IDrawable b1, b2, b3;
+	protected Drawable b1, b2, b3;
 	
 	@Override
 	public void paint(Graphics g) {
@@ -44,14 +44,14 @@ public class CanvasPanel extends Canvas {
 		resistorBody = rbody;
 		
 		b1 = new Container(10,0,40,80);
-		((Drawable)b1).color = Color.red;
-		rbody.add((Drawable)b1);
+		b1.color = Color.red;
+		rbody.add(b1);
 		
 		b2 = new Container(70,0,40,80);
-		rbody.add((Drawable)b2);
+		rbody.add(b2);
 		
 		b3 = new Container(150,0,40,80);
-		rbody.add((Drawable)b3);
+		rbody.add(b3);
 		
 		
 		
