@@ -26,6 +26,7 @@ public class MainPanel extends JPanel{
 		cons.gridwidth = 1;
 		cons.gridx = 0;
 		cons.gridy = 0;
+		cons.fill = GridBagConstraints.BOTH;
 		
 		cpanel = new CanvasPanel();
 		this.add(cpanel,cons);
