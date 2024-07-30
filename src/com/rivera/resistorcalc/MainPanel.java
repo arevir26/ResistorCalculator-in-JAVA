@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel{
 	
 	protected CanvasPanel cpanel;
+	protected InputPanel ipanel;
 	GridBagLayout layout;
+	
 	
 	public MainPanel() {
 		initializeLayout();
@@ -27,6 +29,11 @@ public class MainPanel extends JPanel{
 		
 		cpanel = new CanvasPanel();
 		this.add(cpanel,cons);
+		
+		ipanel = new InputPanel();
+		
+		cons.gridy = 1;
+		this.add(ipanel, cons);
 		
 		
 		
