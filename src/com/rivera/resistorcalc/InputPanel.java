@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -21,6 +22,8 @@ public class InputPanel extends JPanel {
 	protected JComboBox<Codes.DColors> b1, b2, b3;
 	protected JComboBox<Codes.MColors> multiplier;
 	protected JComboBox<Codes.TColors> tolerance;
+	
+	protected ArrayList<InputChangeListener> changeListeners = new ArrayList<InputPanel.InputChangeListener>();
 	
 	GridBagConstraints cons = new GridBagConstraints();
 	
@@ -148,10 +151,22 @@ public class InputPanel extends JPanel {
 		}
 	}
 	
+	public void addInputChangeListener(InputChangeListener listener) {
+		changeListeners.add(listener);
+	}
 	
+	public void removeInputChangeListener(InputChangeListener listener) {
+		changeListeners.remove(listener);
+	}
 	
-	enum Mode{
-		FOUR,FIVE
+	interface InputChangeListener {
+		void onInputChange(
+				Mode mode, 
+				Codes.DColors b1, 
+				Codes.DColors b2, 
+				Codes.DColors b3,
+				Codes.MColors mul,
+				Codes.TColors tol);
 	}
 
 }

@@ -70,8 +70,4 @@ public class CanvasPanel extends Canvas {
 	public void setMode(Mode mode) {
 		
 	}
-	
-	enum Mode{
-		FOUR, FIVE
-	}
 }
