@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
 
 public class InputPanel extends JPanel {
 	
@@ -28,8 +27,9 @@ public class InputPanel extends JPanel {
 		b1.setModel(new DigitComboBoxModel());
 		b2.setModel(new DigitComboBoxModel());
 		b3.setModel(new DigitComboBoxModel());
+		multiplier.setModel(new MultiplierComboBoxModel());
+		tolerance.setModel(new ToleranceComboBoxModel());
 		
-		;
 	}
 	
 	private void initialize() {

@@ -3,20 +3,20 @@ package com.rivera.resistorcalc;
 import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
-import com.rivera.resistorcalc.Codes.DColors;
+import com.rivera.resistorcalc.Codes.MColors;
 
-public class DigitComboBoxModel implements ComboBoxModel<Codes.DColors> {
+public class MultiplierComboBoxModel implements ComboBoxModel<Codes.MColors>{
 	
-	Codes.DColors selected = null;
-
+	protected Codes.MColors selected = Codes.MColors.BLACK;
+	
 	@Override
 	public int getSize() {
-		return Codes.DColors.values().length;
+		return Codes.MColors.values().length;
 	}
 
 	@Override
-	public DColors getElementAt(int index) {
-		return Codes.DColors.values()[index];
+	public MColors getElementAt(int index) {
+		return Codes.MColors.values()[index];
 	}
 
 	@Override
@@ -27,12 +27,13 @@ public class DigitComboBoxModel implements ComboBoxModel<Codes.DColors> {
 
 	@Override
 	public void removeListDataListener(ListDataListener l) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void setSelectedItem(Object anItem) {
-		selected = (DColors)anItem;
+		selected = (MColors)anItem;
 	}
 
 	@Override
@@ -40,7 +41,4 @@ public class DigitComboBoxModel implements ComboBoxModel<Codes.DColors> {
 		return selected;
 	}
 	
-	
-	
-
 }
