@@ -43,8 +43,9 @@ public class InputPanel extends JPanel {
 		b3 = new JComboBox<Codes.DColors>();
 		b3.setBackground(Color.white);
 		multiplier = new JComboBox<Codes.MColors>();
+		multiplier.setBackground(Color.white);
 		tolerance = new JComboBox<Codes.TColors>();
-		
+		tolerance.setBackground(Color.white);
 		bandSelection = new ButtonGroup();
 		
 		fourBands = new JRadioButton();
