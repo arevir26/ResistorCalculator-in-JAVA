@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -22,24 +24,27 @@ public class InputPanel extends JPanel {
 	protected JComboBox<Codes.DColors> b1, b2, b3;
 	protected JComboBox<Codes.MColors> multiplier;
 	protected JComboBox<Codes.TColors> tolerance;
-	
-	protected ArrayList<InputChangeListener> changeListeners = new ArrayList<InputPanel.InputChangeListener>();
-	
 	GridBagConstraints cons = new GridBagConstraints();
 	
+	protected ArrayList<InputChangeListener> changeListeners = new ArrayList<InputPanel.InputChangeListener>();
+	protected ActionListener comboBoxListener;
+	
+	
+	// current mode
 	protected Mode mode = Mode.FOUR;
+	
+	// Current selection
+	protected Codes.DColors d1, d2, d3;
+	protected Codes.MColors dmul;
+	protected Codes.TColors dtol;
+	
+	
+	
 	
 	
 	public InputPanel() {
 		initialize();
 		initLayout();
-		
-		b1.setModel(new DigitComboBoxModel());
-		b2.setModel(new DigitComboBoxModel());
-		b3.setModel(new DigitComboBoxModel());
-		multiplier.setModel(new MultiplierComboBoxModel());
-		tolerance.setModel(new ToleranceComboBoxModel());
-		
 	}
 	
 	private void initialize() {
@@ -68,26 +73,49 @@ public class InputPanel extends JPanel {
 		fiveBands.setText("Five");
 		
 		
-		
-		
-		fourBands.addChangeListener(new ChangeListener() {
+		fourBands.addActionListener(new ActionListener() {
+			
 			@Override
-			public void stateChanged(ChangeEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				updateMode(e);
 			}
 		});
-		fiveBands.addChangeListener(new ChangeListener() {
+		fiveBands.addActionListener(new ActionListener() {
+
 			@Override
-			public void stateChanged(ChangeEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				updateMode(e);
+				
 			}
 		});
 		
 		bandSelection.add(fourBands);
 		bandSelection.add(fiveBands);
 		
+		b1.setModel(new DigitComboBoxModel());
+		b2.setModel(new DigitComboBoxModel());
+		b3.setModel(new DigitComboBoxModel());
+		multiplier.setModel(new MultiplierComboBoxModel());
+		tolerance.setModel(new ToleranceComboBoxModel());
 		
+		d1 = (Codes.DColors )b1.getModel().getSelectedItem();
+		d2 = (Codes.DColors )b2.getModel().getSelectedItem();
+		d3 = (Codes.DColors )b3.getModel().getSelectedItem();
+		dmul = (Codes.MColors)multiplier.getModel().getSelectedItem();
+		dtol = (Codes.TColors)tolerance.getModel().getSelectedItem();
 		
+		comboBoxListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				invokeListeners();
+			}
+		};
+		b1.addActionListener(comboBoxListener);
+		b2.addActionListener(comboBoxListener);
+		b3.addActionListener(comboBoxListener);
+		multiplier.addActionListener(comboBoxListener);
+		tolerance.addActionListener(comboBoxListener);
 		
 	}
 	
@@ -131,7 +159,7 @@ public class InputPanel extends JPanel {
 		
 	}
 	
-	protected void updateMode(ChangeEvent e){
+	protected void updateMode(ActionEvent e){
 		
 		JRadioButton source = (JRadioButton)e.getSource();
 		if(source == fourBands && fourBands.isSelected()) {
@@ -149,6 +177,8 @@ public class InputPanel extends JPanel {
 		if(mode == Mode.FIVE) {
 			b1.setVisible(true);
 		}
+		
+		invokeListeners();
 	}
 	
 	public void addInputChangeListener(InputChangeListener listener) {
@@ -159,12 +189,23 @@ public class InputPanel extends JPanel {
 		changeListeners.remove(listener);
 	}
 	
+	private void invokeListeners() {
+		d1 = (Codes.DColors )b1.getModel().getSelectedItem();
+		d2 = (Codes.DColors )b2.getModel().getSelectedItem();
+		d3 = (Codes.DColors )b3.getModel().getSelectedItem();
+		dmul = (Codes.MColors)multiplier.getModel().getSelectedItem();
+		dtol = (Codes.TColors)tolerance.getModel().getSelectedItem();
+		changeListeners.forEach((a)->{
+			a.onInputChange(mode, d1, d2, d3, dmul, dtol);
+		});
+	}
+	
 	interface InputChangeListener {
 		void onInputChange(
 				Mode mode, 
-				Codes.DColors b1, 
-				Codes.DColors b2, 
-				Codes.DColors b3,
+				Codes.DColors d1, 
+				Codes.DColors d2, 
+				Codes.DColors d3,
 				Codes.MColors mul,
 				Codes.TColors tol);
 	}
