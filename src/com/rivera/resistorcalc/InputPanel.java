@@ -7,6 +7,7 @@ import java.awt.Insets;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
@@ -48,7 +49,9 @@ public class InputPanel extends JPanel {
 		
 		fourBands = new JRadioButton();
 		fourBands.setSelected(true);
+		fourBands.setText("Four");
 		fiveBands = new JRadioButton();
+		fiveBands.setText("Five");
 		
 		bandSelection.add(fourBands);
 		bandSelection.add(fiveBands);
@@ -69,13 +72,15 @@ public class InputPanel extends JPanel {
 		cons.gridy = 0;
 		cons.insets = new Insets(10, 10, 10, 10);
 		
-		add(fourBands, cons);
+		add(new JLabel("Bands: "), cons);
 		
 		cons.gridx = 1;
+		add(fourBands, cons);
+		
+		cons.gridx = 2;
 		add(fiveBands, cons);
 		
 		cons.gridy = 1;
-		
 		cons.gridx = 0;
 		add(b1, cons);
 		
@@ -83,9 +88,6 @@ public class InputPanel extends JPanel {
 		add(b2, cons);
 		
 		cons.gridx = 2;
-		add(b2, cons);
-		
-		cons.gridx = 3;
 		add(b3, cons);
 		
 		cons.gridx = 4;
