@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class InputPanel extends JPanel {
 	
@@ -19,6 +21,11 @@ public class InputPanel extends JPanel {
 	protected JComboBox<Codes.DColors> b1, b2, b3;
 	protected JComboBox<Codes.MColors> multiplier;
 	protected JComboBox<Codes.TColors> tolerance;
+	
+	GridBagConstraints cons = new GridBagConstraints();
+	
+	protected Mode mode = Mode.FOUR;
+	
 	
 	public InputPanel() {
 		initialize();
@@ -49,19 +56,40 @@ public class InputPanel extends JPanel {
 		bandSelection = new ButtonGroup();
 		
 		fourBands = new JRadioButton();
-		fourBands.setSelected(true);
+		
 		fourBands.setText("Four");
+		fourBands.setSelected(true);
+		b1.setVisible(false); // should not be visible on four bands mode
 		fiveBands = new JRadioButton();
+		
 		fiveBands.setText("Five");
+		
+		
+		
+		
+		fourBands.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				updateMode(e);
+			}
+		});
+		fiveBands.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				updateMode(e);
+			}
+		});
 		
 		bandSelection.add(fourBands);
 		bandSelection.add(fiveBands);
 		
 		
+		
+		
 	}
 	
 	private void initLayout() {
-		GridBagConstraints cons = new GridBagConstraints();
+		
 		
 		setBackground(Color.white);
 		
@@ -98,6 +126,32 @@ public class InputPanel extends JPanel {
 		add(tolerance, cons);
 		
 		
+	}
+	
+	protected void updateMode(ChangeEvent e){
+		
+		JRadioButton source = (JRadioButton)e.getSource();
+		if(source == fourBands && fourBands.isSelected()) {
+			mode = Mode.FOUR;
+		}
+		if(source == fiveBands && fiveBands.isSelected()) {
+			mode = Mode.FIVE;
+		}
+		
+		
+		if(mode == Mode.FOUR) {
+			b1.setVisible(false);
+			b1.getModel().setSelectedItem(Codes.DColors.values()[0]);
+		}
+		if(mode == Mode.FIVE) {
+			b1.setVisible(true);
+		}
+	}
+	
+	
+	
+	enum Mode{
+		FOUR,FIVE
 	}
 
 }

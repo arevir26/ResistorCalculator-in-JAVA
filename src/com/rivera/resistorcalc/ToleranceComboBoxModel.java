@@ -7,7 +7,7 @@ import com.rivera.resistorcalc.Codes.TColors;
 
 public class ToleranceComboBoxModel implements ComboBoxModel<Codes.TColors> {
 
-	Codes.TColors selected = null;
+	Codes.TColors selected = Codes.TColors.values()[0];
 	
 	@Override
 	public int getSize() {

@@ -7,7 +7,7 @@ import com.rivera.resistorcalc.Codes.DColors;
 
 public class DigitComboBoxModel implements ComboBoxModel<Codes.DColors> {
 	
-	Codes.DColors selected = null;
+	Codes.DColors selected = Codes.DColors.values()[0];
 
 	@Override
 	public int getSize() {
