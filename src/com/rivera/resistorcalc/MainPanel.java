@@ -9,6 +9,7 @@ public class MainPanel extends JPanel{
 	
 	protected CanvasPanel cpanel;
 	protected InputPanel ipanel;
+	protected ResultPanel rpanel;
 	GridBagLayout layout;
 	
 	
@@ -31,9 +32,13 @@ public class MainPanel extends JPanel{
 		cpanel = new CanvasPanel();
 		this.add(cpanel,cons);
 		
+		rpanel = new ResultPanel();
+		cons.gridy = 1;
+		this.add(rpanel, cons);
+		
 		ipanel = new InputPanel();
 		
-		cons.gridy = 1;
+		cons.gridy = 2;
 		this.add(ipanel, cons);
 		
 		
