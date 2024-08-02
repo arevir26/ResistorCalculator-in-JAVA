@@ -1,5 +1,7 @@
 package com.rivera.resistorcalc;
 
+import java.util.ArrayList;
+
 public class ResistanceCalculator {
 	
 	protected Codes.DColors b1;
@@ -7,6 +9,8 @@ public class ResistanceCalculator {
 	protected Codes.DColors b3;
 	protected Codes.MColors mul;
 	protected Codes.TColors tol;
+	
+	protected ArrayList<IResistanceChangeListener> listeners = new ArrayList<ResistanceCalculator.IResistanceChangeListener>();
 	
 	public void setValues(
 			Codes.DColors b1, 
@@ -21,11 +25,28 @@ public class ResistanceCalculator {
 		this.mul = mul;
 		this.tol = tol;
 		
+		valuesChanged();
+	}
+	
+	public void removeListener(IResistanceChangeListener listener) {
+		listeners.remove(listener);
+	}
+	
+	public void addListener(IResistanceChangeListener listener) {
+		listeners.add(listener);
 	}
 	
 	private void valuesChanged() {
+		double digit = (Codes.getCodeValue(b1) * 100) +
+				(Codes.getCodeValue(b2) * 10) + Codes.getCodeValue(b3);
+		double resistance = digit * Codes.getCodeValue(mul);
+		double tolerance = Codes.getCodeValue(tol);
+		double minRes = resistance - (tolerance * resistance);
+		double maxRes = resistance + (tolerance * resistance);
 		
-		
+		listeners.forEach(a->{
+			a.onResistanceChange(resistance, minRes, maxRes, tolerance);
+		});
 		
 	}
 	

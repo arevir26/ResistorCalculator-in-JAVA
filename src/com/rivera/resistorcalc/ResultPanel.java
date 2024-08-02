@@ -8,7 +8,9 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ResultPanel extends JPanel{
+import com.rivera.resistorcalc.ResistanceCalculator.IResistanceChangeListener;
+
+public class ResultPanel extends JPanel implements IResistanceChangeListener{
 	
 
 	protected JLabel lResistance;
@@ -55,6 +57,12 @@ public class ResultPanel extends JPanel{
 		cons.gridx = 1;
 		this.add(tolerance, cons);
 		
+	}
+
+	@Override
+	public void onResistanceChange(double Resistance, double minRes, double maxRes, double tolerance) {
+		this.resistance.setText(String.format("%.1f ohm", Resistance));
+		this.tolerance.setText(String.format("%.1f %%", tolerance));
 	}
 	
 

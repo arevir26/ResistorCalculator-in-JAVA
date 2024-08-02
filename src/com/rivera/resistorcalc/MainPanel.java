@@ -5,6 +5,11 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+import com.rivera.resistorcalc.Codes.DColors;
+import com.rivera.resistorcalc.Codes.MColors;
+import com.rivera.resistorcalc.Codes.TColors;
+import com.rivera.resistorcalc.InputPanel.InputChangeListener;
+
 public class MainPanel extends JPanel{
 	
 	protected CanvasPanel cpanel;
@@ -12,9 +17,23 @@ public class MainPanel extends JPanel{
 	protected ResultPanel rpanel;
 	GridBagLayout layout;
 	
+	ResistanceCalculator calculator;
+	InputChangeListener inputlistener;
+	
 	
 	public MainPanel() {
+		calculator = new ResistanceCalculator();
 		initializeLayout();
+		inputlistener = new InputChangeListener() {
+			
+			@Override
+			public void onInputChange(Mode mode, DColors d1, DColors d2, DColors d3, MColors mul, TColors tol) {
+				calculator.setValues(d1, d2, d3, mul, tol);
+			}
+		};
+		ipanel.addInputChangeListener(inputlistener);
+		
+		calculator.addListener(rpanel);
 	}
 	
 	

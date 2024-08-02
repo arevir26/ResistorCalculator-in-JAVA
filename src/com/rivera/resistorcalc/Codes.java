@@ -118,8 +118,8 @@ public class Codes {
 		return 0;
 	}
 	
-	public static double getCodeValue(Codes.TColors mul) {
-		switch(mul) {
+	public static double getCodeValue(Codes.TColors tol) {
+		switch(tol) {
 		case BROWN:
 			return 1;
 		case RED:
