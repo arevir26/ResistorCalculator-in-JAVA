@@ -13,11 +13,11 @@ public class CanvasPanel extends Canvas {
 	
 	protected Mode mode = Mode.FOUR;
 	
-	protected Codes.DColors digit1 = Codes.DColors.BLACK;
-	protected Codes.DColors digit2 = Codes.DColors.BLACK;
-	protected Codes.DColors digit3 = Codes.DColors.BLACK;
-	protected Codes.MColors multiplier = Codes.MColors.BLACK;
-	protected Codes.TColors tolerance = Codes.TColors.BLACK;
+	protected Codes.DColors digit1 = Codes.DColors.values()[0];
+	protected Codes.DColors digit2 = Codes.DColors.values()[0];
+	protected Codes.DColors digit3 = Codes.DColors.values()[0];
+	protected Codes.MColors multiplier = Codes.MColors.values()[0];
+	protected Codes.TColors tolerance = Codes.TColors.GOLD;
 	
 	protected IDrawable resistorLead;
 	protected IDrawable resistorBody;

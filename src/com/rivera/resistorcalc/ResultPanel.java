@@ -1,7 +1,6 @@
 package com.rivera.resistorcalc;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -38,18 +37,10 @@ public class ResultPanel extends JPanel{
 		cons.fill = GridBagConstraints.HORIZONTAL;
 		cons.insets = new Insets(0, 5, 0, 5);
 		
-		
-		Dimension labelSize = new Dimension(400, 100);
-		
 		this.setLayout(layout);
 		this.add(lResistance, cons);
 		lResistance.setHorizontalAlignment(JLabel.RIGHT);
-		lResistance.setOpaque(true);
-		lResistance.setBackground(Color.GREEN);
-		
-		lTolerance.setOpaque(true);
-		lTolerance.setBackground(Color.GREEN);
-		
+
 		
 		cons.gridx = 1;
 		cons.gridy = 0;
@@ -63,6 +54,7 @@ public class ResultPanel extends JPanel{
 		
 		cons.gridx = 1;
 		this.add(tolerance, cons);
+		
 	}
 	
 
