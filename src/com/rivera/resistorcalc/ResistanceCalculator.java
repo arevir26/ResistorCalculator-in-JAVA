@@ -41,8 +41,8 @@ public class ResistanceCalculator {
 				(Codes.getCodeValue(b2) * 10) + Codes.getCodeValue(b3);
 		double resistance = digit * Codes.getCodeValue(mul);
 		double tolerance = Codes.getCodeValue(tol);
-		double minRes = resistance - (tolerance * resistance);
-		double maxRes = resistance + (tolerance * resistance);
+		double minRes = resistance - (tolerance * resistance / 100);
+		double maxRes = resistance + (tolerance * resistance / 100);
 		
 		listeners.forEach(a->{
 			a.onResistanceChange(resistance, minRes, maxRes, tolerance);
