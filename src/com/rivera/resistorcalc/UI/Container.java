@@ -7,12 +7,10 @@ public class Container extends Drawable{
 	
 	
 	protected ArrayList<Drawable> child = new ArrayList<>();
+	public int padding = 10;
 	
 	public Container(int x, int y, int w, int h) {
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.h = h;
+		super(x, y, w, h);
 		
 	}
 	
@@ -21,6 +19,7 @@ public class Container extends Drawable{
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
+		refreshOffset();
 		child.forEach((a)->{
 			a.draw(g);
 		});
@@ -29,9 +28,33 @@ public class Container extends Drawable{
 
 
 	public void add(Drawable d) {
-		d.setXOffset(x);
-		d.setYOffset(y);
+		if(d==null)return;
 		child.add(d);
+	}
+	
+	protected void refreshOffset() {
+		int elements = 0; // count only the visible components
+		int childTotalWidth = 0;
+		for(Drawable d: child) {
+			if(!d.visible)continue;
+			childTotalWidth += d.w;
+			elements ++;
+		}
+		
+		// Prevents division by zero
+		double childSpacing = (elements < 1) ? 0 : ((this.w - (padding *2) - childTotalWidth)) / (elements-1);
+		//int childSpacing = 0;
+		
+		int elementPosition = padding +  this.x;
+		for(Drawable d: child) {
+			if(!d.visible)continue; // skip not visible components
+			d.setXOffset(elementPosition);
+			d.setYOffset(this.y);
+			elementPosition += d.w;
+			elementPosition += childSpacing;
+		}
+		
+		
 	}
 
 }

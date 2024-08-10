@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import com.rivera.resistorcalc.UI.Band;
 import com.rivera.resistorcalc.UI.Container;
 import com.rivera.resistorcalc.UI.Drawable;
 import com.rivera.resistorcalc.UI.IDrawable;
@@ -21,7 +22,9 @@ public class CanvasPanel extends Canvas {
 	
 	protected IDrawable resistorLead;
 	protected IDrawable resistorBody;
-	protected Drawable b1, b2, b3;
+	protected Band b1, b2, b3, b4, b5;
+	protected final int bWidth = 30;
+	protected final int bHeight = 80;
 	
 	@Override
 	public void paint(Graphics g) {
@@ -43,16 +46,30 @@ public class CanvasPanel extends Canvas {
 		rbody.color = Color.CYAN;
 		resistorBody = rbody;
 		
-		b1 = new Container(10,0,40,80);
+		b1 = new Band(bWidth,bHeight);
 		b1.color = Color.red;
+		b1.visible = false;
 		rbody.add(b1);
 		
-		b2 = new Container(70,0,40,80);
+		b2 = new Band(bWidth,bHeight);
 		rbody.add(b2);
 		
-		b3 = new Container(150,0,40,80);
+		b3 = new Band(bWidth,bHeight);
 		rbody.add(b3);
 		
+		b4 = new Band(bWidth, bHeight);
+		rbody.add(b4);
+		
+		b5 = new Band( bWidth, bHeight);
+		rbody.add(b5);
+		
+		
+		
+		
+	}
+	
+	
+	private void drawBands() {
 		
 		
 	}
