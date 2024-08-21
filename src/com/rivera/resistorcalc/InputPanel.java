@@ -183,6 +183,7 @@ public class InputPanel extends JPanel {
 	
 	public void addInputChangeListener(InputChangeListener listener) {
 		changeListeners.add(listener);
+		invokeListeners();
 	}
 	
 	public void removeInputChangeListener(InputChangeListener listener) {

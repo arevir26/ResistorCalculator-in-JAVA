@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public class Codes {
 	
+	private final static Color SILVER = new Color(192, 192, 192);
+	private final static Color GOLD = new Color(240,240, 125);
 	private Codes() {}
 	
 	/**
@@ -192,7 +194,9 @@ public class Codes {
 		case WHITE:
 			return Color.WHITE;
 		case GOLD:
-			return new Color(0,255,255,1);
+			return GOLD;
+		case SILVER:
+			return Codes.SILVER;
 		default:
 			return Color.black;
 		}
@@ -206,7 +210,7 @@ public class Codes {
 		case BROWN:
 			return new Color(139, 69, 19);
 		case GOLD:
-			return new Color(0, 255,255,1);
+			return Codes.GOLD;
 		case GREEN:
 			return Color.GREEN;
 		case GREY:
@@ -214,7 +218,7 @@ public class Codes {
 		case RED:
 			return Color.RED;
 		case SILVER:
-			return Color.PINK;
+			return Codes.SILVER;
 		case VIOLET:
 			return new Color(148,0,211);
 		default:

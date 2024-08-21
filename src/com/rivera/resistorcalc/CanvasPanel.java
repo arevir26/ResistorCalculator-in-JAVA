@@ -11,14 +11,7 @@ import com.rivera.resistorcalc.UI.Drawable;
 import com.rivera.resistorcalc.UI.IDrawable;
 
 public class CanvasPanel extends Canvas {
-	
-	protected Mode mode = Mode.FOUR;
-	
-	protected Codes.DColors digit1 = Codes.DColors.values()[0];
-	protected Codes.DColors digit2 = Codes.DColors.values()[0];
-	protected Codes.DColors digit3 = Codes.DColors.values()[0];
-	protected Codes.MColors multiplier = Codes.MColors.values()[0];
-	protected Codes.TColors tolerance = Codes.TColors.GOLD;
+	protected Color c1, c2, c3, c4, c5 = Color.BLACK;
 	
 	protected IDrawable resistorLead;
 	protected IDrawable resistorBody;
@@ -48,7 +41,7 @@ public class CanvasPanel extends Canvas {
 		
 		b1 = new Band(bWidth,bHeight);
 		b1.color = Color.red;
-		b1.visible = false;
+		
 		rbody.add(b1);
 		
 		b2 = new Band(bWidth,bHeight);
@@ -68,9 +61,30 @@ public class CanvasPanel extends Canvas {
 		
 	}
 	
-	
-	private void drawBands() {
+	public void setBandColors(Color c1, Color c2, Color c3, Color c4, Color c5) {
+		b1.color = c1;
+		b2.color = c2;
+		b3.color = c3;
+		b4.color = c4;
+		b5.color = c5;
+		b5.visible = true;
+		updateBands();
 		
+	}
+	
+	public void setBandColors(Color c1, Color c2, Color c3, Color c4) {
+		b1.color = c1;
+		b2.color = c2;
+		b3.color = c3;
+		b4.color = c4;
+		b5.visible = false;
+		updateBands();
+		
+	}
+	
+	
+	private void updateBands() {
+		this.repaint();
 		
 	}
 	
@@ -83,8 +97,4 @@ public class CanvasPanel extends Canvas {
 		return (int)getSize().getWidth()/2;
 	}
 	
-	
-	public void setMode(Mode mode) {
-		
-	}
 }

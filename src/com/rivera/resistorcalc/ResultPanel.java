@@ -91,6 +91,7 @@ public class ResultPanel extends JPanel implements IResistanceChangeListener{
 		this.tolerance.setText(String.format("%.1f %%", tolerance));
 		this.maxValue.setText(String.format("%.1f ohm", maxRes));
 		this.minValue.setText(String.format("%.1f ohm", minRes));
+		
 	}
 	
 
