@@ -13,6 +13,10 @@ import com.rivera.resistorcalc.ResistanceCalculator.IResistanceChangeListener;
 public class ResultPanel extends JPanel implements IResistanceChangeListener{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3416335799116751080L;
 	protected JLabel lResistance;
 	protected JLabel lTolerance;
 	protected JLabel resistance;
@@ -87,10 +91,32 @@ public class ResultPanel extends JPanel implements IResistanceChangeListener{
 
 	@Override
 	public void onResistanceChange(double Resistance, double minRes, double maxRes, double tolerance) {
-		this.resistance.setText(String.format("%.1f ohm", Resistance));
+		this.resistance.setText(formatResistance(Resistance));
 		this.tolerance.setText(String.format("%.1f %%", tolerance));
-		this.maxValue.setText(String.format("%.1f ohm", maxRes));
-		this.minValue.setText(String.format("%.1f ohm", minRes));
+		this.maxValue.setText(formatResistance(maxRes));
+		this.minValue.setText(formatResistance(minRes));
+		
+	}
+	
+	private String formatResistance(double resistance) {
+		double res = resistance;
+		String unit = " Ohm";
+		if(resistance >= 1000000000) {
+			res = resistance/1000000000;
+			unit = "Giga Ohm";
+		}else
+		if(resistance >= 1000000) {
+			res = resistance/1000000;
+			unit = "Mega Ohm";
+		}else if(resistance >= 1000){
+			res = resistance/1000;
+			unit = "Kilo Ohm";
+		}
+		
+		int abs = (int) Math.abs(res);
+		String formatted = (abs == res) ? String.format("%.0f %s", res, unit) : String.format("%.2f %s", res, unit);
+		
+		return formatted;
 	}
 	
 

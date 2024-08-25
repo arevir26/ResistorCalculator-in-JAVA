@@ -1,7 +1,11 @@
 package com.rivera.resistorcalc;
 
+import java.awt.Color;
+
 public class Codes {
 	
+	private final static Color SILVER = new Color(192, 192, 192);
+	private final static Color GOLD = new Color(240,240, 125);
 	private Codes() {}
 	
 	/**
@@ -138,6 +142,88 @@ public class Codes {
 			return 20;
 		}
 		return 0;
+	}
+	
+	public static Color getColor(Codes.DColors dcol) {
+		switch(dcol) {
+		case BLACK:
+			return Color.BLACK;
+		case BLUE:
+			return Color.BLUE;
+		case BROWN:
+			return new Color(139,69,19);
+		case RED:
+			return Color.RED;
+		case ORANGE:
+			return Color.ORANGE;
+		case YELLOW:
+			return Color.YELLOW;
+		case GREEN:
+			return Color.GREEN;
+		case VIOLET:
+			return new Color(148,0,211);
+		case GREY:
+			return Color.GRAY;
+		case WHITE:
+			return Color.WHITE;
+		default:
+			return Color.black;
+		}
+	}
+	
+	public static Color getColor(Codes.MColors dcol) {
+		switch(dcol) {
+		case BLACK:
+			return Color.BLACK;
+		case BLUE:
+			return Color.BLUE;
+		case BROWN:
+			return new Color(139,69,19);
+		case RED:
+			return Color.RED;
+		case ORANGE:
+			return Color.ORANGE;
+		case YELLOW:
+			return Color.YELLOW;
+		case GREEN:
+			return Color.GREEN;
+		case VIOLET:
+			return new Color(148,0,211);
+		case GREY:
+			return Color.GRAY;
+		case WHITE:
+			return Color.WHITE;
+		case GOLD:
+			return GOLD;
+		case SILVER:
+			return Codes.SILVER;
+		default:
+			return Color.black;
+		}
+	}
+	
+	public static Color getColor(Codes.TColors tcol) {
+		
+		switch(tcol) {
+		case BLUE:
+			return Color.BLUE;
+		case BROWN:
+			return new Color(139, 69, 19);
+		case GOLD:
+			return Codes.GOLD;
+		case GREEN:
+			return Color.GREEN;
+		case GREY:
+			return Color.GRAY;
+		case RED:
+			return Color.RED;
+		case SILVER:
+			return Codes.SILVER;
+		case VIOLET:
+			return new Color(148,0,211);
+		default:
+			return Color.BLACK;
+		}
 	}
 
 }

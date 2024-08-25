@@ -1,5 +1,6 @@
 package com.rivera.resistorcalc;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -29,6 +30,20 @@ public class MainPanel extends JPanel{
 			@Override
 			public void onInputChange(Mode mode, DColors d1, DColors d2, DColors d3, MColors mul, TColors tol) {
 				calculator.setValues(d1, d2, d3, mul, tol);
+				Color c1 = Codes.getColor(d1);
+				Color c2 = Codes.getColor(d2);
+				Color c3 = Codes.getColor(d3);
+				Color m = Codes.getColor(mul);
+				Color t = Codes.getColor(tol);
+				
+				switch(mode) {
+				case FIVE:
+					cpanel.setBandColors(c1, c2, c3, m, t);
+					break;
+				case FOUR:
+					cpanel.setBandColors(c2, c3, m, t);
+					break;
+				}
 			}
 		};
 		ipanel.addInputChangeListener(inputlistener);
