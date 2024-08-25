@@ -7,10 +7,11 @@ import java.awt.Graphics;
 
 import com.rivera.resistorcalc.UI.Band;
 import com.rivera.resistorcalc.UI.Container;
-import com.rivera.resistorcalc.UI.Drawable;
 import com.rivera.resistorcalc.UI.IDrawable;
 
 public class CanvasPanel extends Canvas {
+
+
 	protected Color c1, c2, c3, c4, c5 = Color.BLACK;
 	
 	protected IDrawable resistorLead;
